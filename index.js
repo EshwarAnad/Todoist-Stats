@@ -27,30 +27,21 @@ async function updateGist(data) {
   }
 
   const lines = [];
-  const { karma, completed_count, days_items, week_items, goals } = data;
+  const { karma, completed_count, days_items, goals } = data;
 
   const karmaPoint = [`🏆 ${humanize(karma)} Karma Points`];
   lines.push(karmaPoint.join(" "));
 
   const dailyGoal = [
-    `🌞 Completed ${days_items[0].total_completed.toString()} tasks out of ${
-      goals.daily_goal
-    } today`,
+    `🌞 Completed ${days_items[0].total_completed.toString()} today`,
   ];
   lines.push(dailyGoal.join(" "));
-
-  const weeklyGoal = [
-    `📅 Completed ${week_items[0].total_completed.toString()} tasks out of ${
-      goals.weekly_goal
-    } this week`,
-  ];
-  lines.push(weeklyGoal.join(" "));
 
   const totalTasks = [`✅ Completed ${humanize(completed_count)} tasks so far`];
   lines.push(totalTasks.join(" "));
 
   const longestStreak = [
-    `⌛ Longest streak is ${humanize(goals.last_daily_streak.count)} days`,
+    `⌛ Longest streak is ${humanize(goals.max_daily_streak.count)} days`,
   ];
   lines.push(longestStreak.join(" "));
 
